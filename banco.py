@@ -9,6 +9,7 @@ menu = '''
 saldo = 0
 qtd_de_depositos = 0
 estrato = []
+limite_diario_de_saque = 3
 while True:
     mensagem = input(menu)
     if mensagem.upper() == 'D':
@@ -22,29 +23,26 @@ while True:
             print("Deposito inválido! ")
     
     if mensagem.upper() == 'S':
+        saque = float(input("digite o valor do saque: "))
+        if saque <= 500 and saque > 0:
+            if saldo >= saque and limite_diario_de_saque > 0:
+                saldo -= saque
+                print("saque realizado!")
+                estrato.append(f"R${saque:.2f}")
+            else:
+                print("saldo abaixo ou limite de saque escedido")
+        else:
+            print("saque inválido")
+
     if mensagem.upper() == 'E':
+        print(*estrato,f"saldo: R${saldo:.2f}", sep="\n" )
     if mensagem.upper() == 'Q':
-
-# 
-# 
-# saque = float(input("digite o valor do saque: "))
-# 
-# 
+        print("processo finalizado!")
+        break
 
 
 
 
 
-# limite_diario_de_saque = 3
 
-# if saque <= 500 and saque > 0:
-#     if saldo >= saque and limite_diario_de_saque > 0:
-#         saldo -= saque
-#         print("saque realizado!")
-#         estrato.append(f"R${saque:.2f}")
-#     else:
-#         print("saldo abaixo ou limite de saque escedido")
-# else:
-#     print("saque inválido")
-# print(*estrato,f"R${saldo:.2f}", sep="\n" )
 
